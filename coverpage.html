@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AutoTypes Intro</title>
+  <style>
+    :root {
+      --primary: #000000;
+      --secondary: #3caaf3;
+      --light: #ecf0f1;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      background: var(--primary);
+      color: var(--light);
+    }
+
+    body {
+      background: url("C:\Users\sudha\OneDrive\Pictures\car-49278.jpg") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .intro-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+      background-color: rgba(0, 0, 0, 0.6); 
+      z-index: 1;
+      position: relative;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    .intro-container h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: slideDown 1s ease-out;
+    }
+
+    .intro-container h1 span {
+      color: var(--secondary);
+    }
+
+    .intro-container p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 2rem;
+      animation: slideUp 1.5s ease-out;
+    }
+
+    .enter-btn {
+      padding: 0.8rem 1.5rem;
+      background-color: var(--secondary);
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      animation: fadeIn 3s ease;
+    }
+
+    .enter-btn:hover {
+      background-color: #FFD700;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="intro-container">
+    <h1>Welcome to <span>AutoTypes</span></h1>
+    <p>Explore the diverse world of car body styles — from sporty coupes to rugged off-road beasts.</p>
+    <a href="file:///F:/SEMESTER-2/VS%20CODE/carwebsite2.html" class="enter-btn">Enter Site</a>
+  </div>
+
+</body>
+</html>

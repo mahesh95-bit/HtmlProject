@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoTypes - Coupe Documentation</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #3caaf3;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.doc-main {
+    animation: fadeInUp 1s ease-out;
+}
+
+.sidebar {
+    animation: fadeInRight 1.2s ease-out;
+}
+
+.tab-content {
+    animation: fadeIn 0.5s ease-in;
+}
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .doc-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+        
+        .doc-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 1rem;
+        }
+        
+        .doc-header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .doc-header p.subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .doc-main img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .specs-table th, .specs-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .specs-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .specs-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .pros, .cons {
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .pros {
+            background-color: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .cons {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .pros h3, .cons h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pros h3::before {
+            content: "✓";
+            color: #2ecc71;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .cons h3::before {
+            content: "✗";
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .pros ul, .cons ul {
+            padding-left: 1.5rem;
+        }
+        
+        .video-container {
+            margin: 2rem 0;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .quick-facts {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .quick-facts li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .quick-facts li strong {
+            display: block;
+            color: var(--primary);
+        }
+        
+        .popular-models {
+            margin-top: 2rem;
+        }
+        
+        .popular-models ul {
+            padding-left: 1.2rem;
+        }
+        
+        .popular-models li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .tab-container {
+            margin: 2rem 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1.5rem 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .doc-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Auto<span>Types</span></a>
+    </header>
+    <div class="doc-container">
+        <div class="doc-header">
+            <h1>Coupe Documentation</h1>
+            <p class="subtitle">Stylish two-door vehicles with sporty design and performance</p>
+        </div>
+        
+        <main class="doc-main">
+            <img src="C:\Users\sudha\OneDrive\Pictures\35bb1637-f017-4797-a2cf-031930808618_2020+Jaguar+F-Type+front+quarter+moving+2.avif" alt="Luxury Coupe">
+            
+            <h2>What Defines a Coupe?</h2>
+            <p>A coupe is characterized by its fixed roof, two-door configuration, and often sportier proportions. Key features include:</p>
+            
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Typical Specification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Roofline Height</td>
+                        <td>50-55 inches (1.27-1.4m)</td>
+                    </tr>
+                    <tr>
+                        <td>Door Opening Width</td>
+                        <td>≥24 inches (61cm)</td>
+                    </tr>
+                    <tr>
+                        <td>Front Headroom</td>
+                        <td>≥37 inches (94cm)</td>
+                    </tr>
+                    <tr>
+                        <td>Weight Distribution</td>
+                        <td>48/52 to 55/45 F/R</td>
+                    </tr>
+                    <tr>
+                        <td>Lateral Acceleration</td>
+                        <td>0.85-1.05g (sport models)</td>
+                    </tr>
+                    <tr>
+                        <td>Braking Distance</td>
+                        <td>100-130 feet from 60mph</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'dimensions')">Dimensions</button>
+                    <button class="tab-btn" onclick="openTab(event, 'performance')">Performance</button>
+                    <button class="tab-btn" onclick="openTab(event, 'design')">Design</button>
+                </div>
+                
+                <div id="dimensions" class="tab-content active">
+                    <h3>Detailed Dimension Requirements</h3>
+                    <ul>
+                        <li><strong>Overall Length:</strong> 175-195 inches (4.4-5m)</li>
+                        <li><strong>Wheelbase:</strong> 104-112 inches (2.6-2.8m)</li>
+                        <li><strong>Width:</strong> 70-76 inches (1.78-1.93m)</li>
+                        <li><strong>Rear Seat Access:</strong> Minimum 20" door opening height</li>
+                        <li><strong>Trunk Opening:</strong> ≥40 inches wide (102cm)</li>
+                    </ul>
+                </div>
+                
+                <div id="performance" class="tab-content">
+                    <h3>Performance Characteristics</h3>
+                    <ul>
+                        <li><strong>0-60 mph:</strong> 3.5-7.5 seconds (varies by model)</li>
+                        <li><strong>Top Speed:</strong> 130-200+ mph</li>
+                        <li><strong>Engine Options:</strong> Typically 4-12 cylinders</li>
+                        <li><strong>Power Output:</strong> 200-700+ horsepower</li>
+                        <li><strong>Transmission:</strong> 6-10 speed manuals/automatics</li>
+                    </ul>
+                </div>
+                
+                <div id="design" class="tab-content">
+                    <h3>Design Elements</h3>
+                    <ul>
+                        <li><strong>Roof Slope:</strong> 25-35 degree angle common</li>
+                        <li><strong>Pillar Configuration:</strong> Often pillarless designs</li>
+                        <li><strong>Wheel Size:</strong> 18-22 inch diameter common</li>
+                        <li><strong>Aerodynamics:</strong> Coefficient of lift -0.5 to -1.5</li>
+                        <li><strong>Weight:</strong> 3,000-4,500 lbs (1,360-2,040kg)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>Advantages of Coupes</h3>
+                    <ul>
+                        <li>Sportier appearance than sedans</li>
+                        <li>Better handling dynamics</li>
+                        <li>More powerful engine options often available</li>
+                        <li>Exclusive, upscale feel</li>
+                        <li>Lower drag coefficient than SUVs</li>
+                    </ul>
+                </div>
+                
+                <div class="cons">
+                    <h3>Disadvantages of Coupes</h3>
+                    <ul>
+                        <li>Limited rear seat accessibility</li>
+                        <li>Reduced headroom for taller passengers</li>
+                        <li>Less practical for families</li>
+                        <li>Higher insurance costs</li>
+                        <li>More expensive than comparable sedans</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Coupe Engineering Explained</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/0yxl-61vZC0" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </main>
+        
+        <aside class="sidebar">
+            <h3>Coupe Quick Facts</h3>
+            <ul class="quick-facts">
+                <li>
+                    <strong>First Modern Coupe</strong>
+                    <span>1910s coachbuilt designs</span>
+                </li>
+                <li>
+                    <strong>Market Share (2023)</strong>
+                    <span>8% of luxury vehicle sales</span>
+                </li>
+                <li>
+                    <strong>Most Popular Segment</strong>
+                    <span>Luxury performance coupes</span>
+                </li>
+                <li>
+                    <strong>Average Price Range</strong>
+                    <span>$35,000 - $150,000+</span>
+                </li>
+                <li>
+                    <strong>Resale Value</strong>
+                    <span>Retains ~40% of value after 5 years</span>
+                </li>
+            </ul>
+            
+            <div class="popular-models">
+                <h3>Iconic Coupe Models</h3>
+                <ul>
+                    <li>BMW 4 Series</li>
+                    <li>Ford Mustang</li>
+                    <li>Audi A5 Coupe</li>
+                    <li>Chevrolet Camaro</li>
+                    <li>Mercedes-Benz C-Class Coupe</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+    
+    <script>
+        
+        function openTab(evt, tabName) {
+            
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            
+            const tabButtons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstTab = document.querySelector('.tab-btn');
+            if (firstTab) firstTab.click();
+            
+            
+            console.log("Coupe documentation page loaded");
+        });
+        
+        
+        function calculatePowerToWeight(weight, power) {
+            return (power / weight * 1000).toFixed(2);
+        }
+    </script>
+</body>
+</html>

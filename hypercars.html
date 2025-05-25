@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoTypes - Hypercar Documentation</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #3caaf3;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.doc-main {
+    animation: fadeInUp 1s ease-out;
+}
+
+.sidebar {
+    animation: fadeInRight 1.2s ease-out;
+}
+
+.tab-content {
+    animation: fadeIn 0.5s ease-in;
+}
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .doc-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+        
+        .doc-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 1rem;
+        }
+        
+        .doc-header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .doc-header p.subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .doc-main img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .specs-table th, .specs-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .specs-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .specs-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .pros, .cons {
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .pros {
+            background-color: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .cons {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .pros h3, .cons h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pros h3::before {
+            content: "✓";
+            color: #2ecc71;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .cons h3::before {
+            content: "✗";
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .pros ul, .cons ul {
+            padding-left: 1.5rem;
+        }
+        
+        .video-container {
+            margin: 2rem 0;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .quick-facts {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .quick-facts li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .quick-facts li strong {
+            display: block;
+            color: var(--primary);
+        }
+        
+        .popular-models {
+            margin-top: 2rem;
+        }
+        
+        .popular-models ul {
+            padding-left: 1.2rem;
+        }
+        
+        .popular-models li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .tab-container {
+            margin: 2rem 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1.5rem 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .doc-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Auto<span>Types</span></a>
+    </header>
+    
+    <div class="doc-container">
+        <div class="doc-header">
+            <h1>Hypercar Documentation</h1>
+            <p class="subtitle">The pinnacle of automotive engineering and performance</p>
+        </div>
+        
+        <main class="doc-main">
+            <img src="C:\Users\sudha\OneDrive\Pictures\Top-10-Hypercars-in-the-World-Pagani-Huayra.jpg" alt="Hypercar">
+            
+            <h2>What Defines a Hypercar?</h2>
+            <p>Hypercars represent the absolute cutting edge of automotive technology, pushing boundaries of speed, power, and exclusivity. Key characteristics include:</p>
+            
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Typical Specification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0-60 mph acceleration</td>
+                        <td>2.0-2.8 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>Top speed</td>
+                        <td>250-330+ mph (400-530+ km/h)</td>
+                    </tr>
+                    <tr>
+                        <td>Horsepower</td>
+                        <td>1,000-1,800+ HP</td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>2,800-3,500 lbs (1,270-1,590 kg)</td>
+                    </tr>
+                    <tr>
+                        <td>Power-to-weight ratio</td>
+                        <td>0.35-0.60 HP/lb</td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td>$1M-$5M+</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'technology')">Technology</button>
+                    <button class="tab-btn" onclick="openTab(event, 'performance')">Performance</button>
+                    <button class="tab-btn" onclick="openTab(event, 'exclusivity')">Exclusivity</button>
+                </div>
+                
+                <div id="technology" class="tab-content active">
+                    <h3>Cutting-Edge Technology</h3>
+                    <ul>
+                        <li><strong>Materials:</strong> Extensive use of carbon fiber, titanium, and aerospace alloys</li>
+                        <li><strong>Aerodynamics:</strong> Active aero systems with computer-controlled elements</li>
+                        <li><strong>Powertrain:</strong> Hybrid or all-electric systems with instant torque</li>
+                        <li><strong>Chassis:</strong> Monocoque construction with integrated safety cells</li>
+                        <li><strong>Electronics:</strong> Advanced traction control and torque vectoring</li>
+                    </ul>
+                </div>
+                
+                <div id="performance" class="tab-content">
+                    <h3>Extreme Performance</h3>
+                    <ul>
+                        <li><strong>Acceleration:</strong> Faster than most production motorcycles</li>
+                        <li><strong>Braking:</strong> Carbon ceramic brakes with aircraft-style systems</li>
+                        <li><strong>Cornering:</strong> Can exceed 2g lateral acceleration</li>
+                        <li><strong>Powertrain:</strong> Often combine combustion engines with electric motors</li>
+                        <li><strong>Cooling:</strong> Sophisticated systems to manage extreme heat</li>
+                    </ul>
+                </div>
+                
+                <div id="exclusivity" class="tab-content">
+                    <h3>Ultimate Exclusivity</h3>
+                    <ul>
+                        <li><strong>Production Numbers:</strong> Typically limited to 50-500 units</li>
+                        <li><strong>Ownership Experience:</strong> Often includes concierge services</li>
+                        <li><strong>Customization:</strong> Nearly unlimited personalization options</li>
+                        <li><strong>Access:</strong> Some models require owning previous models</li>
+                        <li><strong>Investment Value:</strong> Many appreciate significantly</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>Hypercar Advantages</h3>
+                    <ul>
+                        <li>Unmatched performance capabilities</li>
+                        <li>Cutting-edge automotive technology</li>
+                        <li>Exclusive ownership experience</li>
+                        <li>Potential investment appreciation</li>
+                        <li>Bespoke customization options</li>
+                        <li>Status symbol unlike any other</li>
+                        <li>Pushing automotive boundaries</li>
+                    </ul>
+                </div>
+                
+                <div class="cons">
+                    <h3>Hypercar Disadvantages</h3>
+                    <ul>
+                        <li>Extremely high purchase price</li>
+                        <li>Very limited production numbers</li>
+                        <li>Prohibitive maintenance costs</li>
+                        <li>Difficult to fully utilize performance</li>
+                        <li>Limited practicality for daily use</li>
+                        <li>High insurance premiums</li>
+                        <li>Requires special storage conditions</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Hypercar Technology Overview</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/01eWObrfgLk" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </main>
+        
+        <aside class="sidebar">
+            <h3>Hypercar Quick Facts</h3>
+            <ul class="quick-facts">
+                <li>
+                    <strong>First Recognized Hypercar</strong>
+                    <span>1993 McLaren F1</span>
+                </li>
+                <li>
+                    <strong>Fastest Production Car</strong>
+                    <span>SSC Tuatara (316 mph)</span>
+                </li>
+                <li>
+                    <strong>Most Powerful</strong>
+                    <span>Rimac Nevera (1,914 HP)</span>
+                </li>
+                <li>
+                    <strong>Most Expensive Sold</strong>
+                    <span>Mercedes-Benz 300 SLR ($142M)</span>
+                </li>
+                <li>
+                    <strong>Lightest</strong>
+                    <span>Gordon Murray T.50 (2,174 lbs)</span>
+                </li>
+            </ul>
+            
+            <div class="popular-models">
+                <h3>Iconic Hypercars</h3>
+                <ul>
+                    <li>Bugatti Chiron</li>
+                    <li>Koenigsegg Jesko</li>
+                    <li>Pagani Huayra</li>
+                    <li>Ferrari LaFerrari</li>
+                    <li>Porsche 918 Spyder</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+   <script>
+function openTab(evt, tabName) {
+    const tabContents = document.getElementsByClassName("tab-content");
+    const tabButtons = document.getElementsByClassName("tab-btn");
+
+    for (let i = 0; i < tabContents.length; i++) {
+        tabContents[i].classList.remove("active");
+        tabContents[i].style.animation = "none";
+    }
+    for (let i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].classList.remove("active");
+    }
+
+    const selectedTab = document.getElementById(tabName);
+    selectedTab.classList.add("active");
+    selectedTab.style.animation = "fadeIn 0.5s ease-in"; 
+
+    evt.currentTarget.classList.add("active");
+}
+
+function initVehiclePage() {
+    const firstTab = document.querySelector('.tab-btn');
+    if (firstTab) firstTab.click();
+}
+
+document.addEventListener('DOMContentLoaded', initVehiclePage);
+</script>
+</body>
+</html>

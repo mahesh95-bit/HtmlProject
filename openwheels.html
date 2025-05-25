@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoTypes - Open Wheel Car Documentation</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #3caaf3;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.doc-main {
+    animation: fadeInUp 1s ease-out;
+}
+
+.sidebar {
+    animation: fadeInRight 1.2s ease-out;
+}
+
+.tab-content {
+    animation: fadeIn 0.5s ease-in;
+}
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .doc-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+        
+        .doc-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 1rem;
+        }
+        
+        .doc-header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .doc-header p.subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .doc-main img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .specs-table th, .specs-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .specs-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .specs-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .pros, .cons {
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .pros {
+            background-color: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .cons {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .pros h3, .cons h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pros h3::before {
+            content: "✓";
+            color: #2ecc71;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .cons h3::before {
+            content: "✗";
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .pros ul, .cons ul {
+            padding-left: 1.5rem;
+        }
+        
+        .video-container {
+            margin: 2rem 0;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .quick-facts {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .quick-facts li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .quick-facts li strong {
+            display: block;
+            color: var(--primary);
+        }
+        
+        .popular-models {
+            margin-top: 2rem;
+        }
+        
+        .popular-models ul {
+            padding-left: 1.2rem;
+        }
+        
+        .popular-models li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .tab-container {
+            margin: 2rem 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1.5rem 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .doc-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Auto<span>Types</span></a>
+    </header>
+    
+    <div class="doc-container">
+        <div class="doc-header">
+            <h1>Open Wheel Car Documentation</h1>
+            <p class="subtitle">High-performance racing machines with exposed wheels and aerodynamic bodies</p>
+        </div>
+        
+        <main class="doc-main">
+            <img src="C:\Users\sudha\OneDrive\Pictures\FIA_F1_Austria_2023_Nr._4_(2).jpg" alt="Open Wheel Race Car">
+            
+            <h2>What Defines an Open Wheel Car?</h2>
+            <p>Open wheel cars are racing vehicles with wheels outside the main body structure, offering maximum performance. Key characteristics include:</p>
+            
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Typical Specification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Wheel Configuration</td>
+                        <td>Exposed wheels outside bodywork</td>
+                    </tr>
+                    <tr>
+                        <td>Power-to-Weight Ratio</td>
+                        <td>1,000+ HP per ton (F1)</td>
+                    </tr>
+                    <tr>
+                        <td>0-60 mph time</td>
+                        <td>1.6-2.5 seconds (F1/IndyCar)</td>
+                    </tr>
+                    <tr>
+                        <td>Top Speed</td>
+                        <td>230-250+ mph (370-400+ km/h)</td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>1,300-1,600 lbs (590-725 kg)</td>
+                    </tr>
+                    <tr>
+                        <td>Primary Use</td>
+                        <td>Circuit racing, time trials</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'design')">Design</button>
+                    <button class="tab-btn" onclick="openTab(event, 'performance')">Performance</button>
+                    <button class="tab-btn" onclick="openTab(event, 'categories')">Categories</button>
+                </div>
+                
+                <div id="design" class="tab-content active">
+                    <h3>Open Wheel Design Features</h3>
+                    <ul>
+                        <li><strong>Chassis:</strong> Carbon fiber monocoque for safety</li>
+                        <li><strong>Aerodynamics:</strong> Front/rear wings, diffusers</li>
+                        <li><strong>Suspension:</strong> Pushrod/pullrod with torsion bars</li>
+                        <li><strong>Powertrain:</strong> Mid-engine, rear-wheel drive</li>
+                        <li><strong>Tires:</strong> Slick racing tires (no tread)</li>
+                        <li><strong>Safety:</strong> Halo device, crash structures</li>
+                    </ul>
+                </div>
+                
+                <div id="performance" class="tab-content">
+                    <h3>Performance Characteristics</h3>
+                    <ul>
+                        <li><strong>Cornering G-Force:</strong> 5-6G sustained</li>
+                        <li><strong>Braking:</strong> 100-0 mph in 2.9 seconds</li>
+                        <li><strong>Downforce:</strong> 3-5x vehicle weight at speed</li>
+                        <li><strong>Power Output:</strong> 750-1,000+ HP (F1 hybrid)</li>
+                        <li><strong>Fuel Efficiency:</strong> ~4 mpg at race pace</li>
+                    </ul>
+                </div>
+                
+                <div id="categories" class="tab-content">
+                    <h3>Major Open Wheel Categories</h3>
+                    <ul>
+                        <li><strong>Formula 1:</strong> Pinnacle of open wheel racing</li>
+                        <li><strong>IndyCar:</strong> High-speed oval/speedway racing</li>
+                        <li><strong>Formula 2/3:</strong> F1 feeder series</li>
+                        <li><strong>Formula E:</strong> Electric open wheel racing</li>
+                        <li><strong>Formula Ford:</strong> Entry-level open wheel</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>Open Wheel Advantages</h3>
+                    <ul>
+                        <li>Ultimate racing performance</li>
+                        <li>Superior aerodynamics</li>
+                        <li>Lightweight construction</li>
+                        <li>Precise handling characteristics</li>
+                        <li>Advanced technology development</li>
+                        <li>High cornering speeds</li>
+                        <li>Driver visibility (no bodywork obstruction)</li>
+                    </ul>
+                </div>
+                
+                <div class="cons">
+                    <h3>Open Wheel Disadvantages</h3>
+                    <ul>
+                        <li>Extremely expensive to build/maintain</li>
+                        <li>No practicality for road use</li>
+                        <li>High risk of wheel-to-wheel contact</li>
+                        <li>Limited protection in crashes</li>
+                        <li>Requires specialized tracks</li>
+                        <li>Difficult to drive at limit</li>
+                        <li>Very sensitive to setup changes</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Open Wheel Racing Technology</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/tiWSJ0KITEI" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </main>
+        
+        <aside class="sidebar">
+            <h3>Open Wheel Quick Facts</h3>
+            <ul class="quick-facts">
+                <li>
+                    <strong>First Open Wheel Race</strong>
+                    <span>1894 Paris-Rouen (Grand Prix)</span>
+                </li>
+                <li>
+                    <strong>Fastest Lap (F1)</strong>
+                    <span>Lewis Hamilton - Monza 1:18.887 (164.3 mph avg)</span>
+                </li>
+                <li>
+                    <strong>Most Powerful</strong>
+                    <span>1986 F1 Turbo Era (1,500+ HP qualifying)</span>
+                </li>
+                <li>
+                    <strong>Cost per Car</strong>
+                    <span>$12-$20 million (F1), $500k (IndyCar)</span>
+                </li>
+                <li>
+                    <strong>G-Force Record</strong>
+                    <span>6.5G sustained (Eau Rouge corner)</span>
+                </li>
+            </ul>
+            
+            <div class="popular-models">
+                <h3>Iconic Open Wheel Cars</h3>
+                <ul>
+                    <li>McLaren MP4/4 (F1)</li>
+                    <li>Lotus 79 (Ground Effects)</li>
+                    <li>Williams FW14B (Active Suspension)</li>
+                    <li>Penske PC-23 (IndyCar)</li>
+                    <li>Red Bull RB19 (F1 Dominance)</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+   <script>
+   function openTab(evt, tabName) {
+       const tabContents = document.getElementsByClassName("tab-content");
+       for (let i = 0; i < tabContents.length; i++) {
+           tabContents[i].classList.remove("active");
+       }
+       
+       const tabButtons = document.getElementsByClassName("tab-btn");
+       for (let i = 0; i < tabButtons.length; i++) {
+           tabButtons[i].classList.remove("active");
+       }
+       
+       document.getElementById(tabName).classList.add("active");
+       evt.currentTarget.classList.add("active");
+   }
+
+   function initVehiclePage() {
+       const firstTab = document.querySelector('.tab-btn');
+       if (firstTab) firstTab.click();
+   }
+
+   document.addEventListener('DOMContentLoaded', initVehiclePage);
+   </script>
+</body>
+</html>

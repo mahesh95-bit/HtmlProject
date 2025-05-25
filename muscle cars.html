@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoTypes - Muscle Car Documentation</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #3caaf3;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.doc-main {
+    animation: fadeInUp 1s ease-out;
+}
+
+.sidebar {
+    animation: fadeInRight 1.2s ease-out;
+}
+
+.tab-content {
+    animation: fadeIn 0.5s ease-in;
+}
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .doc-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+        
+        .doc-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 1rem;
+        }
+        
+        .doc-header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .doc-header p.subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .doc-main img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .specs-table th, .specs-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .specs-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .specs-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .pros, .cons {
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .pros {
+            background-color: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .cons {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .pros h3, .cons h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pros h3::before {
+            content: "✓";
+            color: #2ecc71;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .cons h3::before {
+            content: "✗";
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .pros ul, .cons ul {
+            padding-left: 1.5rem;
+        }
+        
+        .video-container {
+            margin: 2rem 0;
+            position: relative;
+            padding-bottom: 56.25%; 
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .quick-facts {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .quick-facts li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .quick-facts li strong {
+            display: block;
+            color: var(--primary);
+        }
+        
+        .popular-models {
+            margin-top: 2rem;
+        }
+        
+        .popular-models ul {
+            padding-left: 1.2rem;
+        }
+        
+        .popular-models li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .tab-container {
+            margin: 2rem 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1.5rem 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .doc-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Auto<span>Types</span></a>
+    </header>
+    <div class="doc-container">
+        <div class="doc-header">
+            <h1>Muscle Car Documentation</h1>
+            <p class="subtitle">High-performance American classics with powerful V8 engines and aggressive styling</p>
+        </div>
+        
+        <main class="doc-main">
+            <img src="C:\Users\sudha\OneDrive\Pictures\54cae423e713b_-_american-muscle-facts-06-0312-xln.avif" alt="Classic Muscle Car">
+            
+            <h2>What Defines a Muscle Car?</h2>
+            <p>A muscle car is an American-made, high-performance vehicle with a powerful V8 engine, rear-wheel drive, and aggressive styling. Key characteristics include:</p>
+            
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Typical Specification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Engine Type</td>
+                        <td>Large displacement V8 (sometimes V6 in modern versions)</td>
+                    </tr>
+                    <tr>
+                        <td>Horsepower</td>
+                        <td>400-700+ HP in modern models</td>
+                    </tr>
+                    <tr>
+                        <td>0-60 mph time</td>
+                        <td>3.5-6 seconds (varies by model)</td>
+                    </tr>
+                    <tr>
+                        <td>Body Style</td>
+                        <td>2-door coupe (some 4-door models)</td>
+                    </tr>
+                    <tr>
+                        <td>Drive Type</td>
+                        <td>Rear-wheel drive (some AWD options)</td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>3,700-4,500 lbs (1,678-2,041 kg)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'dimensions')">Performance</button>
+                    <button class="tab-btn" onclick="openTab(event, 'features')">Key Features</button>
+                    <button class="tab-btn" onclick="openTab(event, 'mileage')">Fuel Economy</button>
+                </div>
+                
+                <div id="dimensions" class="tab-content active">
+                    <h3>Performance Specifications</h3>
+                    <p>Muscle cars are defined by their performance capabilities:</p>
+                    <ul>
+                        <li><strong>Engine displacement:</strong> Typically 5.0L to 6.2L in modern models</li>
+                        <li><strong>Torque:</strong> 400-650 lb-ft for street-legal models</li>
+                        <li><strong>Quarter-mile time:</strong> 11-14 seconds for production models</li>
+                        <li><strong>Top speed:</strong> Electronically limited to 155-200 mph</li>
+                        <li><strong>Braking:</strong> 60-0 mph in 110-140 feet</li>
+                    </ul>
+                </div>
+                
+                <div id="features" class="tab-content">
+                    <h3>Muscle Car Features</h3>
+                    <ul>
+                        <li><strong>Engine:</strong> Large V8 with high horsepower output</li>
+                        <li><strong>Exhaust:</strong> Aggressive sounding dual exhaust systems</li>
+                        <li><strong>Transmission:</strong> 6-10 speed automatic or manual options</li>
+                        <li><strong>Suspension:</strong> Performance-tuned for straight-line speed</li>
+                        <li><strong>Exterior:</strong> Bold styling with hood scoops, racing stripes</li>
+                        <li><strong>Interior:</strong> Sport seats, performance gauges, premium audio</li>
+                        <li><strong>Technology:</strong> Launch control, line lock, performance modes</li>
+                    </ul>
+                </div>
+                
+                <div id="mileage" class="tab-content">
+                    <h3>Fuel Economy Considerations</h3>
+                    <p>Muscle cars prioritize power over efficiency:</p>
+                    <ul>
+                        <li><strong>Classic muscle cars (1960s-70s):</strong> 8-12 MPG combined</li>
+                        <li><strong>Modern V8 muscle cars:</strong> 15-20 MPG city, 22-28 MPG highway</li>
+                        <li><strong>Supercharged models:</strong> 12-16 MPG city, 18-22 MPG highway</li>
+                        <li><strong>V6 performance models:</strong> 19-22 MPG city, 28-32 MPG highway</li>
+                        <li><strong>Hybrid/electric muscle cars:</strong> Emerging segment (e.g., Mustang Mach-E)</li>
+                    </ul>
+                    <p><em>Note: These are averages based on EPA estimates. Actual mileage varies with driving style.</em></p>
+                </div>
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>Advantages of Muscle Cars</h3>
+                    <ul>
+                        <li>Exceptional straight-line acceleration</li>
+                        <li>Distinctive aggressive styling and sound</li>
+                        <li>Strong aftermarket support for modifications</li>
+                        <li>Good value for performance compared to imports</li>
+                        <li>High horsepower at relatively affordable prices</li>
+                        <li>Iconic American automotive heritage</li>
+                        <li>Strong resale value for limited edition models</li>
+                    </ul>
+                </div>
+                
+                <div class="cons">
+                    <h3>Disadvantages of Muscle Cars</h3>
+                    <ul>
+                        <li>Poor fuel efficiency compared to other cars</li>
+                        <li>Heavy weight affects handling on curves</li>
+                        <li>Limited rear-seat and cargo space</li>
+                        <li>Higher insurance costs due to performance</li>
+                        <li>Tires and brakes wear out faster</li>
+                        <li>Can be difficult to handle in poor weather</li>
+                        <li>Some models have cheap interior materials</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Muscle Car Overview Video</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/oqdmfiJ2dnc" frameborder="0" allowfullscreen></iframe>
+                
+            </div>
+        </main>
+        
+        <aside class="sidebar">
+            <h3>Quick Facts</h3>
+            <ul class="quick-facts">
+                <li>
+                    <strong>First Muscle Car</strong>
+                    <span>1949 Oldsmobile Rocket 88 (debated)</span>
+                </li>
+                <li>
+                    <strong>Golden Era</strong>
+                    <span>1964-1974 (before emissions regulations)</span>
+                </li>
+                <li>
+                    <strong>Most Powerful Production</strong>
+                    <span>Dodge Challenger SRT Demon (840 HP)</span>
+                </li>
+                <li>
+                    <strong>Average Price</strong>
+                    <span>$35,000 (base) to $80,000 (high-performance)</span>
+                </li>
+                <li>
+                    <strong>Resale Value</strong>
+                    <span>Classic models appreciate, modern depreciate normally</span>
+                </li>
+            </ul>
+            
+            <div class="popular-models">
+                <h3>Iconic Muscle Cars</h3>
+                <ul>
+                    <li>Ford Mustang</li>
+                    <li>Chevrolet Camaro</li>
+                    <li>Dodge Challenger</li>
+                    <li>Pontiac GTO</li>
+                    <li>Plymouth Barracuda</li>
+                    <li>Chevrolet Chevelle SS</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+    
+    <script>
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            const tabButtons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Muscle car documentation page loaded");
+        });
+    </script>
+</body>
+</html> 

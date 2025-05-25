@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>AutoTypes - Hatchback Documentation</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #3caaf3;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.doc-main {
+    animation: fadeInUp 1s ease-out;
+}
+
+.sidebar {
+    animation: fadeInRight 1.2s ease-out;
+}
+
+.tab-content {
+    animation: fadeIn 0.5s ease-in;
+}
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+    
+        .doc-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+        
+        .doc-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 1rem;
+        }
+        
+        .doc-header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .doc-header p.subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .doc-main img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .specs-table th, .specs-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .specs-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .specs-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .pros, .cons {
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .pros {
+            background-color: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .cons {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .pros h3, .cons h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pros h3::before {
+            content: "✓";
+            color: #2ecc71;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .cons h3::before {
+            content: "✗";
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .pros ul, .cons ul {
+            padding-left: 1.5rem;
+        }
+        
+        .video-container {
+            margin: 2rem 0;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .quick-facts {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .quick-facts li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .quick-facts li strong {
+            display: block;
+            color: var(--primary);
+        }
+        
+        .popular-models {
+            margin-top: 2rem;
+        }
+        
+        .popular-models ul {
+            padding-left: 1.2rem;
+        }
+        
+        .popular-models li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .tab-container {
+            margin: 2rem 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1.5rem 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .doc-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Auto<span>Types</span></a>
+    </header>
+    <div class="doc-container">
+        <div class="doc-header">
+            <h1>Hatchback Documentation</h1>
+            <p class="subtitle">Compact cars with versatile cargo space and urban practicality</p>
+        </div>
+        
+        <main class="doc-main">
+            <img src="C:\Users\sudha\OneDrive\Pictures\17142-special-edition2024volkswagengolfgti380celebratesthemanualtransmissioninvwshothatch-1.jpg" alt="Modern Hatchback">
+            
+            <h2>What Defines a Hatchback?</h2>
+            <p>A hatchback is characterized by its rear door that swings upward to provide access to a shared passenger and cargo area. Key features include:</p>
+            
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Typical Specification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Liftgate Opening Width</td>
+                        <td>≥36 inches (91cm)</td>
+                    </tr>
+                    <tr>
+                        <td>Rear Seat Fold Angle</td>
+                        <td>≤15° from horizontal</td>
+                    </tr>
+                    <tr>
+                        <td>Load Floor Height</td>
+                        <td>≤28 inches (71cm)</td>
+                    </tr>
+                    <tr>
+                        <td>Cargo Length (seats down)</td>
+                        <td>≥70 inches (178cm)</td>
+                    </tr>
+                    <tr>
+                        <td>Drag Coefficient</td>
+                        <td>0.30-0.35 Cd</td>
+                    </tr>
+                    <tr>
+                        <td>Turning Circle</td>
+                        <td>32-36 feet (9.8-11m)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'dimensions')">Dimensions</button>
+                    <button class="tab-btn" onclick="openTab(event, 'features')">Key Features</button>
+                    <button class="tab-btn" onclick="openTab(event, 'performance')">Performance</button>
+                </div>
+                
+                <div id="dimensions" class="tab-content active">
+                    <h3>Detailed Dimension Requirements</h3>
+                    <p>To be classified as a hatchback, a vehicle must meet these dimensional criteria:</p>
+                    <ul>
+                        <li><strong>Overall Length:</strong> 150-175 inches (3.8-4.4m)</li>
+                        <li><strong>Wheelbase:</strong> 98-104 inches (2.5-2.6m)</li>
+                        <li><strong>Height:</strong> 57-61 inches (1.45-1.55m)</li>
+                        <li><strong>Cargo Volume:</strong> 15-25 cu ft (425-708L) seats up / 40-55 cu ft (1,132-1,557L) seats down</li>
+                        <li><strong>Rear Wiper Coverage:</strong> ≥80% of rear glass area</li>
+                    </ul>
+                </div>
+                
+                <div id="features" class="tab-content">
+                    <h3>Standard Hatchback Features</h3>
+                    <ul>
+                        <li><strong>Rear Door:</strong> Single-piece liftgate with integrated window</li>
+                        <li><strong>Seating:</strong> 60/40 split-folding rear seats standard</li>
+                        <li><strong>Visibility:</strong> Rear wiper and defroster standard</li>
+                        <li><strong>Storage:</strong> Underfloor compartments common</li>
+                        <li><strong>Access:</strong> Lower load height than SUVs (typically 24-28 inches)</li>
+                        <li><strong>Versatility:</strong> Cargo volume increases 120-150% with seats folded</li>
+                    </ul>
+                </div>
+                
+                <div id="performance" class="tab-content">
+                    <h3>Performance Characteristics</h3>
+                    <ul>
+                        <li><strong>Fuel Economy:</strong> 28-35 MPG city / 36-44 MPG highway</li>
+                        <li><strong>Acceleration:</strong> 0-60 mph in 7-10 seconds (base models)</li>
+                        <li><strong>Handling:</strong> Shorter wheelbase improves maneuverability</li>
+                        <li><strong>Hot Hatches:</strong> Performance variants achieve 0-60 in 4-6 seconds</li>
+                        <li><strong>Weight:</strong> 2,600-3,200 lbs (1,180-1,450 kg)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>Advantages of Hatchbacks</h3>
+                    <ul>
+                        <li>Excellent urban maneuverability with tight turning circles</li>
+                        <li>Superior fuel economy compared to SUVs</li>
+                        <li>Versatile cargo space with fold-flat seats</li>
+                        <li>Lower purchase price and operating costs</li>
+                        <li>Easier parking in tight spaces</li>
+                        <li>Sportier handling than equivalent sedans</li>
+                    </ul>
+                </div>
+                
+                <div class="cons">
+                    <h3>Disadvantages of Hatchbacks</h3>
+                    <ul>
+                        <li>Limited rear passenger headroom in some models</li>
+                        <li>Less cargo capacity than SUVs or wagons</li>
+                        <li>Perceived as less premium than sedans</li>
+                        <li>Potentially noisier cargo area</li>
+                        <li>Fewer luxury options in some markets</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Hatchback Design Evolution</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/_ItqR0iaKn4" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </main>
+        
+        <aside class="sidebar">
+            <h3>Hatchback Quick Facts</h3>
+            <ul class="quick-facts">
+                <li>
+                    <strong>First Mass-Produced Hatchback</strong>
+                    <span>1938 Citroën 11CV (France)</span>
+                </li>
+                <li>
+                    <strong>Market Share (2023)</strong>
+                    <span>18% of compact car sales in US</span>
+                </li>
+                <li>
+                    <strong>Most Popular Segment</strong>
+                    <span>Subcompact hatchbacks</span>
+                </li>
+                <li>
+                    <strong>Average Price Range</strong>
+                    <span>$18,000 - $28,000</span>
+                </li>
+                <li>
+                    <strong>Resale Value</strong>
+                    <span>Retains ~42% of value after 5 years</span>
+                </li>
+            </ul>
+            
+            <div class="popular-models">
+                <h3>Popular Hatchback Models</h3>
+                <ul>
+                    <li>Volkswagen Golf</li>
+                    <li>Honda Civic Hatchback</li>
+                    <li>Toyota Corolla Hatchback</li>
+                    <li>Hyundai Elantra GT</li>
+                    <li>Mazda 3 Hatchback</li>
+                    <li>Subaru Impreza 5-Door</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+    
+    <script>
+        
+        function openTab(evt, tabName) {
+            
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            const tabButtons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+           
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.tab-btn').click();
+        });
+    </script>
+</body>
+</html>

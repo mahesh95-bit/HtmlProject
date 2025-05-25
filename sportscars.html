@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoTypes - Sports Car Documentation</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #3caaf3;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.doc-main {
+    animation: fadeInUp 1s ease-out;
+}
+
+.sidebar {
+    animation: fadeInRight 1.2s ease-out;
+}
+
+.tab-content {
+    animation: fadeIn 0.5s ease-in;
+}
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .doc-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+        
+        .doc-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 1rem;
+        }
+        
+        .doc-header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .doc-header p.subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .doc-main img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .specs-table th, .specs-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .specs-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .specs-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .pros, .cons {
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .pros {
+            background-color: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .cons {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .pros h3, .cons h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pros h3::before {
+            content: "✓";
+            color: #2ecc71;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .cons h3::before {
+            content: "✗";
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .pros ul, .cons ul {
+            padding-left: 1.5rem;
+        }
+        
+        .video-container {
+            margin: 2rem 0;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .quick-facts {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .quick-facts li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .quick-facts li strong {
+            display: block;
+            color: var(--primary);
+        }
+        
+        .popular-models {
+            margin-top: 2rem;
+        }
+        
+        .popular-models ul {
+            padding-left: 1.2rem;
+        }
+        
+        .popular-models li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .tab-container {
+            margin: 2rem 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1.5rem 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .doc-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Auto<span>Types</span></a>
+    </header>
+    <div class="doc-container">
+        <div class="doc-header">
+            <h1>Sports Car Documentation</h1>
+            <p class="subtitle">High-performance vehicles designed for driving excitement and speed</p>
+        </div>
+        
+        <main class="doc-main">
+            <img src="C:\Users\sudha\OneDrive\Pictures\2c.jpg" alt="Sports Car">
+            
+            <h2>What Defines a Sports Car?</h2>
+            <p>Sports cars prioritize performance, handling, and driving excitement over practicality. Key characteristics include:</p>
+            
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Typical Specification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0-60 mph acceleration</td>
+                        <td>3.0-5.5 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>Top speed</td>
+                        <td>150-200+ mph (240-320+ km/h)</td>
+                    </tr>
+                    <tr>
+                        <td>Horsepower</td>
+                        <td>300-700+ HP</td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>2,800-3,800 lbs (1,270-1,720 kg)</td>
+                    </tr>
+                    <tr>
+                        <td>Power-to-weight ratio</td>
+                        <td>0.08-0.20 HP/lb</td>
+                    </tr>
+                    <tr>
+                        <td>Braking distance (70-0 mph)</td>
+                        <td>140-170 feet (43-52 meters)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'categories')">Sports Car Categories</button>
+                    <button class="tab-btn" onclick="openTab(event, 'features')">Performance Features</button>
+                    <button class="tab-btn" onclick="openTab(event, 'handling')">Handling</button>
+                </div>
+                
+                <div id="categories" class="tab-content active">
+                    <h3>Sports Car Categories</h3>
+                    <ul>
+                        <li><strong>Entry-level Sports:</strong> Affordable performance (Toyota GR86, Mazda MX-5)</li>
+                        <li><strong>Grand Tourers:</strong> Comfortable long-distance performance (Porsche 911, Aston Martin DB11)</li>
+                        <li><strong>Supercars:</strong> Extreme performance (Ferrari 488, Lamborghini Huracán)</li>
+                        <li><strong>Hypercars:</strong> Cutting-edge technology (McLaren P1, Koenigsegg Jesko)</li>
+                        <li><strong>Track-focused:</strong> Minimal comforts for maximum performance (Porsche 911 GT3, Chevrolet Corvette Z06)</li>
+                    </ul>
+                </div>
+                
+                <div id="features" class="tab-content">
+                    <h3>Performance Features</h3>
+                    <ul>
+                        <li><strong>Engine:</strong> High-revving, turbocharged or naturally aspirated</li>
+                        <li><strong>Transmission:</strong> Precision manual or dual-clutch automatics</li>
+                        <li><strong>Aerodynamics:</strong> Active spoilers, diffusers, and vents</li>
+                        <li><strong>Brakes:</strong> Large disc brakes with multi-piston calipers</li>
+                        <li><strong>Suspension:</strong> Adaptive damping systems</li>
+                        <li><strong>Materials:</strong> Extensive use of carbon fiber and aluminum</li>
+                    </ul>
+                </div>
+                
+                <div id="handling" class="tab-content">
+                    <h3>Handling Characteristics</h3>
+                    <ul>
+                        <li><strong>Weight Distribution:</strong> Near 50/50 front-rear balance</li>
+                        <li><strong>Lateral Acceleration:</strong> 0.9-1.2g on skidpad</li>
+                        <li><strong>Steering:</strong> Direct, quick ratio with excellent feedback</li>
+                        <li><strong>Chassis:</strong> Rigid structure for precise handling</li>
+                        <li><strong>Drivetrain:</strong> Rear-wheel or all-wheel drive configurations</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>Sports Car Advantages</h3>
+                    <ul>
+                        <li>Exceptional acceleration and speed</li>
+                        <li>Precise, responsive handling</li>
+                        <li>Driver-focused cockpit design</li>
+                        <li>High-performance braking systems</li>
+                        <li>Exciting engine sounds and feedback</li>
+                        <li>Lightweight construction</li>
+                        <li>Head-turning styling</li>
+                    </ul>
+                </div>
+                
+                <div class="cons">
+                    <h3>Sports Car Disadvantages</h3>
+                    <ul>
+                        <li>Limited passenger and cargo space</li>
+                        <li>Firm ride quality on rough roads</li>
+                        <li>High purchase and maintenance costs</li>
+                        <li>Premium fuel requirements</li>
+                        <li>Low ground clearance</li>
+                        <li>Higher insurance costs</li>
+                        <li>Limited visibility in some models</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Sports Car Technology Overview</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/IhN7lKZ95uY" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </main>
+        
+        <aside class="sidebar">
+            <h3>Sports Car Quick Facts</h3>
+            <ul class="quick-facts">
+                <li>
+                    <strong>First Modern Sports Car</strong>
+                    <span>1949 Jaguar XK120</span>
+                </li>
+                <li>
+                    <strong>Fastest Production Car</strong>
+                    <span>Henessey Venom F5 (490 kmph)</span>
+                </li>
+                <li>
+                    <strong>Best-selling Sports Car</strong>
+                    <span>Mazda MX-5 (over 1 million sold)</span>
+                </li>
+                <li>
+                    <strong>Average Price Range</strong>
+                    <span>$30,000 (entry) to $3M+ (hypercars)</span>
+                </li>
+                <li>
+                    <strong>Nürburgring Record</strong>
+                    <span>6:30.705 (Porsche 911 GT2 RS)</span>
+                </li>
+            </ul>
+            
+            <div class="popular-models">
+                <h3>Iconic Sports Cars</h3>
+                <ul>
+                    <li>Porsche 911</li>
+                    <li>Chevrolet Corvette</li>
+                    <li>Ferrari 488</li>
+                    <li>Lamborghini Huracán</li>
+                    <li>Nissan GT-R</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+   <script>
+   function openTab(evt, tabName) {
+       const tabContents = document.getElementsByClassName("tab-content");
+       for (let i = 0; i < tabContents.length; i++) {
+           tabContents[i].classList.remove("active");
+       }
+       
+       const tabButtons = document.getElementsByClassName("tab-btn");
+       for (let i = 0; i < tabButtons.length; i++) {
+           tabButtons[i].classList.remove("active");
+       }
+       
+       document.getElementById(tabName).classList.add("active");
+       evt.currentTarget.classList.add("active");
+   }
+
+   function initVehiclePage() {
+       const firstTab = document.querySelector('.tab-btn');
+       if (firstTab) firstTab.click();
+   }
+
+   document.addEventListener('DOMContentLoaded', initVehiclePage);
+   </script>
+</body>
+</html>

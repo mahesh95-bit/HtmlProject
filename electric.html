@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoTypes - Electric Vehicle Documentation</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #3caaf3;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .doc-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+        
+        .doc-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 1rem;
+        }
+        
+        .doc-header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .doc-header p.subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .doc-main img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .specs-table th, .specs-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .specs-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .specs-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .pros, .cons {
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .pros {
+            background-color: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .cons {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .pros h3, .cons h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pros h3::before {
+            content: "✓";
+            color: #2ecc71;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .cons h3::before {
+            content: "✗";
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .pros ul, .cons ul {
+            padding-left: 1.5rem;
+        }
+        
+        .video-container {
+            margin: 2rem 0;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .quick-facts {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .quick-facts li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .quick-facts li strong {
+            display: block;
+            color: var(--primary);
+        }
+        
+        .popular-models {
+            margin-top: 2rem;
+        }
+        
+        .popular-models ul {
+            padding-left: 1.2rem;
+        }
+        
+        .popular-models li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .tab-container {
+            margin: 2rem 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1.5rem 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .doc-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+        }
+        @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.doc-main {
+    animation: fadeInUp 1s ease-out;
+}
+
+.sidebar {
+    animation: fadeInRight 1.2s ease-out;
+}
+
+.tab-content {
+    animation: fadeIn 0.5s ease-in;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <a class="logo">Auto<span>Types</span></a>
+    </header>
+    
+    <div class="doc-container">
+        <div class="doc-header">
+            <h1>Electric Vehicle Documentation</h1>
+            <p class="subtitle">Zero-emission transportation powered by advanced battery technology</p>
+        </div>
+        
+        <main class="doc-main">
+            <img src="C:\Users\sudha\OneDrive\Pictures\rsz_p21_0009_a3_rgb.webp" alt="Modern Electric Vehicle">
+            
+            <h2>What Defines an Electric Vehicle?</h2>
+            <p>Electric vehicles (EVs) are powered entirely or primarily by electricity stored in batteries, with electric motors providing propulsion. Key characteristics include:</p>
+            
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Typical Specification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Power Source</td>
+                        <td>Lithium-ion battery pack (50-100+ kWh)</td>
+                    </tr>
+                    <tr>
+                        <td>Range</td>
+                        <td>200-400+ miles (322-644+ km) per charge</td>
+                    </tr>
+                    <tr>
+                        <td>Charging Time</td>
+                        <td>30 min (fast) to 12 hours (standard)</td>
+                    </tr>
+                    <tr>
+                        <td>Motor Output</td>
+                        <td>150-500+ kW (200-670+ HP)</td>
+                    </tr>
+                    <tr>
+                        <td>0-60 mph Acceleration</td>
+                        <td>1.9-8 seconds (varies by model)</td>
+                    </tr>
+                    <tr>
+                        <td>Energy Efficiency</td>
+                        <td>3-4 miles per kWh (equivalent to 100+ MPGe)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'technology')">Technology</button>
+                    <button class="tab-btn" onclick="openTab(event, 'performance')">Performance</button>
+                    <button class="tab-btn" onclick="openTab(event, 'charging')">Charging</button>
+                </div>
+                
+                <div id="technology" class="tab-content active">
+                    <h3>EV Technology Components</h3>
+                    <ul>
+                        <li><strong>Battery Pack:</strong> Lithium-ion cells with thermal management</li>
+                        <li><strong>Electric Motor:</strong> Permanent magnet or induction type</li>
+                        <li><strong>Power Electronics:</strong> Inverter, DC-DC converter, onboard charger</li>
+                        <li><strong>Regenerative Braking:</strong> Recovers kinetic energy during deceleration</li>
+                        <li><strong>Battery Management:</strong> Monitors cell health and balance</li>
+                        <li><strong>Thermal Systems:</strong> Maintains optimal battery temperature</li>
+                    </ul>
+                </div>
+                
+                <div id="performance" class="tab-content">
+                    <h3>Performance Characteristics</h3>
+                    <ul>
+                        <li><strong>Instant Torque:</strong> Maximum torque available from 0 RPM</li>
+                        <li><strong>Low Center of Gravity:</strong> Batteries mounted in floor</li>
+                        <li><strong>Quiet Operation:</strong> Minimal noise/vibration</li>
+                        <li><strong>Single-Speed Transmission:</strong> No gear shifting needed</li>
+                        <li><strong>Weight Distribution:</strong> Nearly perfect 50/50 balance</li>
+                    </ul>
+                </div>
+                
+                <div id="charging" class="tab-content">
+                    <h3>Charging Infrastructure</h3>
+                    <ul>
+                        <li><strong>Level 1:</strong> 120V AC (3-5 miles/hour)</li>
+                        <li><strong>Level 2:</strong> 240V AC (12-80 miles/hour)</li>
+                        <li><strong>DC Fast Charging:</strong> 400-800V DC (200+ miles in 30 min)</li>
+                        <li><strong>Battery Swapping:</strong> Alternative to charging (emerging)</li>
+                        <li><strong>Vehicle-to-Grid:</strong> Bidirectional power flow capability</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>EV Advantages</h3>
+                    <ul>
+                        <li>Zero tailpipe emissions</li>
+                        <li>Lower operating costs (electricity vs gas)</li>
+                        <li>Reduced maintenance (no oil changes, fewer moving parts)</li>
+                        <li>Instant torque and smooth acceleration</li>
+                        <li>Quieter operation</li>
+                        <li>Home charging convenience</li>
+                        <li>Potential for renewable energy integration</li>
+                    </ul>
+                </div>
+                
+                <div class="cons">
+                    <h3>EV Challenges</h3>
+                    <ul>
+                        <li>Higher upfront purchase price</li>
+                        <li>Limited charging infrastructure in some areas</li>
+                        <li>Longer refueling times compared to gasoline</li>
+                        <li>Range anxiety for some drivers</li>
+                        <li>Battery degradation over time</li>
+                        <li>Heavy weight affects efficiency</li>
+                        <li>Limited towing capacity in most models</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Electric Vehicle Technology Explained</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/tJfERzrG-D8" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </main>
+        
+        <aside class="sidebar">
+            <h3>EV Quick Facts</h3>
+            <ul class="quick-facts">
+                <li>
+                    <strong>First Practical EV</strong>
+                    <span>1884 Thomas Parker (London)</span>
+                </li>
+                <li>
+                    <strong>Fastest Production EV</strong>
+                    <span>Rimac Nevera (258 mph top speed)</span>
+                </li>
+                <li>
+                    <strong>Longest Range EV</strong>
+                    <span>Lucid Air Grand Touring (516 miles EPA)</span>
+                </li>
+                <li>
+                    <strong>Best-Selling EV</strong>
+                    <span>Tesla Model Y (1.23 million in 2023)</span>
+                </li>
+                <li>
+                    <strong>Market Share (2023)</strong>
+                    <span>14% of global new car sales</span>
+                </li>
+            </ul>
+            
+            <div class="popular-models">
+                <h3>Leading EV Models</h3>
+                <ul>
+                    <li>Tesla Model 3/Y</li>
+                    <li>BYD Atto 3/Seal</li>
+                    <li>Volkswagen ID.4</li>
+                    <li>Ford Mustang Mach-E</li>
+                    <li>Hyundai Ioniq 5</li>
+                    <li>Kia EV6</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+   <script>
+   function openTab(evt, tabName) {
+    const tabContents = document.getElementsByClassName("tab-content");
+    const tabButtons = document.getElementsByClassName("tab-btn");
+
+    for (let i = 0; i < tabContents.length; i++) {
+        tabContents[i].classList.remove("active");
+        tabContents[i].style.animation = "none";
+    }
+    for (let i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].classList.remove("active");
+    }
+
+    const selectedTab = document.getElementById(tabName);
+    selectedTab.classList.add("active");
+    selectedTab.style.animation = "fadeIn 0.5s ease-in"; 
+
+    evt.currentTarget.classList.add("active");
+}
+
+    function initVehiclePage() {
+        const firstTab = document.querySelector('.tab-btn');
+        if (firstTab) firstTab.click();
+    }
+
+document.addEventListener('DOMContentLoaded', initVehiclePage);
+   </script>
+</body>
+</html>

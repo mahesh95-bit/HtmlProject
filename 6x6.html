@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoTypes - 6x6 Vehicle Documentation</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #3caaf3;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.doc-main {
+    animation: fadeInUp 1s ease-out;
+}
+
+.sidebar {
+    animation: fadeInRight 1.2s ease-out;
+}
+
+.tab-content {
+    animation: fadeIn 0.5s ease-in;
+}
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .doc-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+        
+        .doc-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 1rem;
+        }
+        
+        .doc-header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .doc-header p.subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .doc-main img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .specs-table th, .specs-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .specs-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .specs-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .pros, .cons {
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .pros {
+            background-color: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .cons {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .pros h3, .cons h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pros h3::before {
+            content: "✓";
+            color: #2ecc71;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .cons h3::before {
+            content: "✗";
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .pros ul, .cons ul {
+            padding-left: 1.5rem;
+        }
+        
+        .video-container {
+            margin: 2rem 0;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .quick-facts {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .quick-facts li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .quick-facts li strong {
+            display: block;
+            color: var(--primary);
+        }
+        
+        .popular-models {
+            margin-top: 2rem;
+        }
+        
+        .popular-models ul {
+            padding-left: 1.2rem;
+        }
+        
+        .popular-models li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .tab-container {
+            margin: 2rem 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1.5rem 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .doc-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Auto<span>Types</span></a>
+    </header>
+    
+    <div class="doc-container">
+        <div class="doc-header">
+            <h1>6x6 Vehicle Documentation</h1>
+            <p class="subtitle">Ultimate off-road capability with six-wheel drive systems</p>
+        </div>
+        
+        <main class="doc-main">
+            <img src="C:\Users\sudha\OneDrive\Pictures\Hennessey-Performance-Mammoth-1000-6x6.-Hennessey-16.jpeg" alt="6x6 Vehicle">
+            
+            <h2>What Defines a 6x6 Vehicle?</h2>
+            <p>6x6 vehicles feature three axles with all six wheels powered, providing extreme traction and load capacity. Key characteristics include:</p>
+            
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Typical Specification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Drive Configuration</td>
+                        <td>All six wheels powered (6WD)</td>
+                    </tr>
+                    <tr>
+                        <td>Payload Capacity</td>
+                        <td>5,000-20,000+ lbs (2,270-9,070+ kg)</td>
+                    </tr>
+                    <tr>
+                        <td>Ground Clearance</td>
+                        <td>12-20 inches (30-50 cm)</td>
+                    </tr>
+                    <tr>
+                        <td>Approach/Departure Angles</td>
+                        <td>40°-50° approach, 35°-45° departure</td>
+                    </tr>
+                    <tr>
+                        <td>Water Fording Depth</td>
+                        <td>40-60 inches (100-150 cm)</td>
+                    </tr>
+                    <tr>
+                        <td>Typical Applications</td>
+                        <td>Military, mining, expedition, utility</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'design')">Design</button>
+                    <button class="tab-btn" onclick="openTab(event, 'capability')">Capability</button>
+                    <button class="tab-btn" onclick="openTab(event, 'applications')">Applications</button>
+                </div>
+                
+                <div id="design" class="tab-content active">
+                    <h3>6x6 Design Features</h3>
+                    <ul>
+                        <li><strong>Chassis:</strong> Reinforced ladder frame or monocoque construction</li>
+                        <li><strong>Suspension:</strong> Heavy-duty solid axles or independent systems</li>
+                        <li><strong>Drivetrain:</strong> Permanent 6WD with locking differentials</li>
+                        <li><strong>Powertrain:</strong> High-torque diesel engines (often turbocharged)</li>
+                        <li><strong>Tires:</strong> Large, rugged off-road or flotation tires</li>
+                    </ul>
+                </div>
+                
+                <div id="capability" class="tab-content">
+                    <h3>Performance Capability</h3>
+                    <ul>
+                        <li><strong>Load Capacity:</strong> Can carry multiple times own weight</li>
+                        <li><strong>Traction:</strong> Superior grip in mud, sand, and snow</li>
+                        <li><strong>Grade Ability:</strong> Can climb 45°+ slopes</li>
+                        <li><strong>Floatation:</strong> Some models can swim in water</li>
+                        <li><strong>Durability:</strong> Built for extreme conditions</li>
+                    </ul>
+                </div>
+                
+                <div id="applications" class="tab-content">
+                    <h3>Primary Applications</h3>
+                    <ul>
+                        <li><strong>Military:</strong> Troop transport, artillery carriers</li>
+                        <li><strong>Mining:</strong> Heavy equipment transport</li>
+                        <li><strong>Expedition:</strong> Overlanding and exploration</li>
+                        <li><strong>Utility:</strong> Firefighting, rescue operations</li>
+                        <li><strong>Commercial:</strong> Specialized hauling needs</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>6x6 Advantages</h3>
+                    <ul>
+                        <li>Unmatched traction in all conditions</li>
+                        <li>Extreme payload capacity</li>
+                        <li>Superior flotation on soft surfaces</li>
+                        <li>Excellent weight distribution</li>
+                        <li>Redundancy if one wheel is disabled</li>
+                        <li>Ability to tow massive loads</li>
+                        <li>Can access remote locations</li>
+                    </ul>
+                </div>
+                
+                <div class="cons">
+                    <h3>6x6 Disadvantages</h3>
+                    <ul>
+                        <li>Very high purchase cost</li>
+                        <li>Poor fuel efficiency</li>
+                        <li>Limited maneuverability</li>
+                        <li>Complex maintenance</li>
+                        <li>Large turning radius</li>
+                        <li>Heavy weight limits some bridges</li>
+                        <li>Special licensing often required</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>6x6 Vehicle Technology</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/N5c-9pbmYv8" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </main>
+        
+        <aside class="sidebar">
+            <h3>6x6 Quick Facts</h3>
+            <ul class="quick-facts">
+                <li>
+                    <strong>First Military 6x6</strong>
+                    <span>WWII GMC CCKW 353</span>
+                </li>
+                <li>
+                    <strong>Most Powerful Production</strong>
+                    <span>Henessey Mammoth 6x6 (501 HP)</span>
+                </li>
+                <li>
+                    <strong>Largest Civilian 6x6</strong>
+                    <span>Tatra T815-7 (GVWR 72,000 lbs)</span>
+                </li>
+                <li>
+                    <strong>Most Expensive</strong>
+                    <span>Mercedes-AMG G63 6x6 ($1M+)</span>
+                </li>
+                <li>
+                    <strong>Longest Continuous Use</strong>
+                    <span>Pinzgauer (50+ years in service)</span>
+                </li>
+            </ul>
+            
+            <div class="popular-models">
+                <h3>Iconic 6x6 Vehicles</h3>
+                <ul>
+                    <li>Mercedes-Benz Zetros</li>
+                    <li>Tatra T815</li>
+                    <li>Pinzgauer 712M</li>
+                    <li>AM General HEMTT</li>
+                    <li>Mercedes-AMG G63 6x6</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+   <script>
+   function openTab(evt, tabName) {
+       const tabContents = document.getElementsByClassName("tab-content");
+       for (let i = 0; i < tabContents.length; i++) {
+           tabContents[i].classList.remove("active");
+       }
+       
+       const tabButtons = document.getElementsByClassName("tab-btn");
+       for (let i = 0; i < tabButtons.length; i++) {
+           tabButtons[i].classList.remove("active");
+       }
+       
+       document.getElementById(tabName).classList.add("active");
+       evt.currentTarget.classList.add("active");
+   }
+
+   function initVehiclePage() {
+       const firstTab = document.querySelector('.tab-btn');
+       if (firstTab) firstTab.click();
+   }
+
+   document.addEventListener('DOMContentLoaded', initVehiclePage);
+   </script>
+</body>
+</html>

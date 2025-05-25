@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoTypes - Explore Car Body Styles</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #3caaf3;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.hero {
+    animation: fadeInUp 1.5s ease-out forwards;
+}
+
+.section-title {
+    animation: fadeInUp 1.2s ease-out forwards;
+}
+
+       .type-card {
+           opacity: 0;
+           transform: translateY(20px);
+           animation: fadeInUp 1s ease-out forwards;
+       }
+       footer {
+            animation: fadeIn 2s ease-in;
+        }
+
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            width: 300px;
+        }
+        
+        .search-box:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            width: 100%;
+            outline: none;
+            font-size: 1rem;
+        }
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            display: none;
+        }
+.type-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.type-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.type-card img {
+    transition: transform 0.5s ease;
+}
+
+.type-card:hover img {
+    transform: scale(1.1);
+}
+
+.type-info h3, .type-info p, .learn-more {
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.type-card:hover .type-info h3 {
+    color: var(--secondary);
+}
+
+.type-card:hover .learn-more {
+    background-color: #000000;
+}
+
+         .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('car-types-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+        }
+        
+        .car-types {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        .type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .type-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .type-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .type-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .type-info {
+            padding: 1.5rem;
+        }
+        
+        .type-info h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        
+        .type-info p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        .learn-more {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+        
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-top: 0;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: var(--light);
+            text-decoration: none;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="logo">Auto<span>Types</span></a>
+        <div class="search-box">
+            <input type="text" placeholder="Search car types...">
+            <button>🔍</button>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <h1>Discover All Car Body Types</h1>
+        <p>Explore the different categories of vehicles and find the perfect type that suits your lifestyle and needs.</p>
+    </section>
+    
+    <section class="car-types">
+        <div class="section-title">
+            <h2>Popular Car Types</h2>
+            <p>Browse through the most common vehicle categories</p>
+        </div>
+        
+        <div class="type-grid">
+            <div class="type-card">
+                <img src="C:\Users\sudha\OneDrive\Pictures\2021-BMW-M3-360SpinFrame_15406_032_2400x1800_C3Z_nologo.avif" alt="Sedan">
+                <div class="type-info">
+                    <h3>Sedans</h3>
+                    <p>The classic four-door configuration with separate trunk, offering comfort and practicality for families and commuters.</p>
+                    <a href="file:///F:/SEMESTER-2/VS%20CODE/sedans.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="type-card">
+                <img src="C:\Users\sudha\OneDrive\Pictures\range-rover-exterior-right-front-three-quarter-46.webp" alt="SUV">
+                <div class="type-info">
+                    <h3>SUVs</h3>
+                    <p>Sport Utility Vehicles combine passenger space with rugged capability, available in various sizes from compact to full-size.</p>
+                    <a href="file:///F:/SEMESTER-2/VS%20CODE/suv.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="type-card">
+                <img src="C:\Users\sudha\OneDrive\Pictures\2024-MINI-Cooper-S-3-Door.jpg" alt="Hatchback">
+                <div class="type-info">
+                    <h3>Hatchbacks</h3>
+                    <p>Compact cars with a rear door that swings upward to provide access to a cargo area, perfect for city driving.</p>
+                    <a href="file:///F:/SEMESTER-2/VS%20CODE/hatchback.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="type-card">
+                <img src="C:\Users\sudha\OneDrive\Pictures\BMW-2-Series-Coupe-181020231707.jpg" alt="Coupe">
+                <div class="type-info">
+                    <h3>Coupes</h3>
+                    <p>Stylish two-door cars with a fixed roof and often a sportier design, typically seating 2-4 passengers.</p>
+                    <a href="file:///F:/SEMESTER-2/VS%20CODE/coupes.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="type-card">
+                <img src="C:\Users\sudha\OneDrive\Pictures\cle-cabriolet-exterior-right-front-three-quarter-3.webp" alt="Convertible">
+                <div class="type-info">
+                    <h3>Convertibles</h3>
+                    <p>Cars with retractable roofs that allow open-air driving when desired, available in various body styles.</p>
+                    <a href="file:///F:/SEMESTER-2/VS%20CODE/Convertibles.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="type-card">
+                <img src="C:\Users\sudha\OneDrive\Pictures\xc90-facelift-exterior-right-front-three-quarter-3.webp" alt="Wagon">
+                <div class="type-info">
+                    <h3>Wagons</h3>
+                    <p>Extended sedan variants with increased cargo space while maintaining driving dynamics of passenger cars.</p>
+                    <a href=file:///F:/SEMESTER-2/VS%20CODE/wagons.html class="learn-more">Learn More</a>
+                </div>
+            </div>
+            <div class="type-card">
+                <img src="C:\Users\sudha\OneDrive\Pictures\review-the-best-hybrid.jpg" alt="Pickup Trucks">
+                <div class="type-info">
+                    <h3>Pickup Trucks</h3>
+                    <p>a type of motor vehicle characterized by its enclosed passenger cabin and open cargo bed, typically with low sides</p>
+                    <a href="file:///F:/SEMESTER-2/VS%20CODE/pickup.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            <div class="type-card">
+                <img src= "C:\Users\sudha\OneDrive\Pictures\10-passenger-black-lincoln-towncar-exterior.jpg" alt="Limousine">
+                <div class="type-info">
+                    <h3>Limousine</h3>
+                    <p>The cars which are used for luxury and comfort, but not easy to handle. </p>
+                    <a href="file:///F:/SEMESTER-2/VS%20CODE/limousine.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            <div class="type-card">
+                <img src="C:\Users\sudha\OneDrive\Pictures\spectre-exterior-right-front-three-quarter-3.avif" alt="electric cars">
+                <div class="type-info">
+                    <h3>Electric</h3>
+                    <p>New generation vehicles with advanced technology and electric drivetrain.</p>
+                    <a href="file:///F:/SEMESTER-2/VS%20CODE/electric.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="car-types" style="background-color: #f8f9fa; padding: 4rem 2rem;">
+        <div class="section-title">
+            <h2>Performance & Specialty Types</h2>
+            <p>High-performance and unique vehicle categories</p>
+        </div>
+        
+        <div class="type-grid">
+            <div class="type-card">
+                <img src="C:\Users\sudha\OneDrive\Pictures\Oro Elios Metallic-OROE-55,46,40-640-en_US.webp" alt="Sports Car">
+                <div class="type-info">
+                    <h3>Sports Cars</h3>
+                    <p>Designed for dynamic performance with emphasis on handling, acceleration, and driving pleasure.</p>
+                    <a href="file:///F:/SEMESTER-2/VS%20CODE/sportscars.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="type-card">
+                <img src="C:\Users\sudha\OneDrive\Pictures\DSC03346.webp" alt="Hypercar">
+                <div class="type-info">
+                    <h3>Hypercars</h3>
+                    <p>The pinnacle of automotive engineering, featuring extreme performance, cutting-edge technology and exclusivity.</p>
+                    <a href="file:///F:/SEMESTER-2/VS%20CODE/hypercars.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="type-card">
+                <img src="C:\Users\sudha\OneDrive\Pictures\HOR_XB1_Jeep_Trailcat.webp" alt="Off-Road">
+                <div class="type-info">
+                    <h3>Off-Road </h3>
+                    <p>Built to handle rough terrain with features like four-wheel drive, high ground clearance and rugged construction.</p>
+                    <a href="file:///F:/SEMESTER-2/VS%20CODE/offroad.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            <div class="type-card">
+                <img src="C:\Users\sudha\OneDrive\Pictures\FH5_Hennessey_VelociRaptor_6x6.webp" alt="6x6 Off-Road">
+                <div class="type-info">
+                    <h3>6x6 Off-Road</h3>
+                    <p>specially modified and custom built to handle rough terrain with features like six-wheel drive, high ground clearance and rugged construction, these types are also rare to find and very few are made making them special.</p>
+                    <a href="file:///F:/SEMESTER-2/VS%20CODE/6x6.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            <div class="type-card">
+                <img src="C:\Users\sudha\OneDrive\Pictures\qlsezh4ley5arqs1qo2a.jpg" alt="Muscle Cars">
+                <div class="type-info">
+                    <h3>Muscle Cars</h3>
+                    <p>Made on the land of United states with incredible power and speed ,these cars are dream for many and nightmare for others.</p>
+                    <a href="file:///F:/SEMESTER-2/VS%20CODE/muscle%20cars.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            <div class="type-card">
+                <img src="C:\Users\sudha\OneDrive\Pictures\RR_2024_F1_Car_Roundup_Red_Bull_RB20.webp" alt="Open Wheels">
+                <div class="type-info">
+                    <h3>Open Wheels</h3>
+                    <p>racing vehicles where the wheels are exposed, meaning they are not covered by the bodywork of the car.</p>
+                    <a href="file:///F:/SEMESTER-2/VS%20CODE/openwheels.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Car Types</h3>
+                <ul>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/sedans.html">Sedans</a></li>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/suv.html">SUVs</a></li>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/hatchback.html">Hatchbacks</a></li>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/coupes.html">Coupes</a></li>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/Convertibles.html">Convertibles</a></li>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/wagons.html">Wagons</a></li>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/pickup.html">Pickup Trucks</a></li>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/limousine.html">Limousine</a></li>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/electric.html">Electric cars</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Performance Types</h3>
+                <ul>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/sportscars.html">Sports Cars</a></li>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/hypercars.html">Hypercars</a></li>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/offroad.html">Off-Road Vehicles</a></li>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/muscle%20cars.html">Muscle Cars</a></li>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/6x6.html">6x6</a></li>
+                    <li><a href="file:///F:/SEMESTER-2/VS%20CODE/openwheels.html">Open wheels</a></li>
+                </ul>
+            </div>
+    </footer>
+    <script>
+        // Basic search functionality
+        document.querySelector('.search-box button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-box input').value.toLowerCase();
+            const cards = document.querySelectorAll('.type-card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Allow search on Enter key press
+        document.querySelector('.search-box input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.search-box button').click();
+            }
+        });
+    </script>
+</body>
+</html>
